@@ -33,7 +33,7 @@ class Generico3 extends RegistroRemAbstract
 {
 	protected function set_codigo_lote($value)
 	{
-		//ArquivoAbstract::$loteCounter++; 
+		//ArquivoAbstract::$loteCounter++;
 		$this->data['codigo_lote'] = RemessaAbstract::$loteCounter;
 	}
 	protected function set_numero_registro($value)
@@ -75,7 +75,7 @@ class Generico3 extends RegistroRemAbstract
 		$this->data['emissao_boleto'] = $value;
 		if($this->data['nosso_numero']==0)
 		{
-			$this->data['carteira'] = '00'; 
+			$this->data['carteira'] = '00';
 		}
 		elseif($this->data['com_registro']==1 && $value==1)
 		{
@@ -91,8 +91,8 @@ class Generico3 extends RegistroRemAbstract
 		}
 		else
 		{
-			throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados"); 
-		}   
+			throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados");
+		}
 	}
 	protected function set_seu_numero($value)
 	{
@@ -102,18 +102,18 @@ class Generico3 extends RegistroRemAbstract
 		}
 		else
 		{
-			$this->data['seu_numero'] = $value != ' ' ? $value : $this->data['nosso_numero'];    
+			$this->data['seu_numero'] = $value != ' ' ? $value : $this->data['nosso_numero'];
 		}
 	}
 	protected function set_seu_numero2($value)
 	{
-		$this->data['seu_numero2'] = $value != ' ' ? $value : $this->data['nosso_numero'];    
+		$this->data['seu_numero2'] = $value != ' ' ? $value : $this->data['nosso_numero'];
 	}
 	protected function set_especie_titulo($value)
 	{
 		if(is_int($value))
 		{
-			$this->data['especie_titulo'] = $value; 
+			$this->data['especie_titulo'] = $value;
 		}
 		else
 		{
@@ -157,12 +157,12 @@ class Generico3 extends RegistroRemAbstract
     {
         $mensagem = (isset($this->entryData['mensagem']))?explode(PHP_EOL,$this->entryData['mensagem']):array();
         $this->data['mensagem_8'] = count($mensagem)>=6?$mensagem[5]:' ';
-    }    
+    }
 	protected function set_informacao_pagador($value)
 	{
 		$mensagem = (isset($this->entryData['informacao_pagador']))?$this->entryData['informacao_pagador']:'';
 		$this->data['informacao_pagador'] = $mensagem;
-	}    
+	}
 	protected function set_prazo_protesto($value)
 	{
 		if($this->data['protestar']==1 && $value = '')
@@ -173,6 +173,6 @@ class Generico3 extends RegistroRemAbstract
 		{
 			$this->data['prazo_protesto'] = $value;
 		}
-	}    
+	}
 }
 ?>

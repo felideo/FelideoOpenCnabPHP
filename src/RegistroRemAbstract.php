@@ -40,8 +40,8 @@ abstract class RegistroRemAbstract
     public function __construct($data = NULL)
     {
         if ($data) // se o ID for informado
-        { 
-            $this->entryData = $data; 
+        {
+            $this->entryData = $data;
             // carrega o objeto correspondente
             foreach($this->meta as $key =>$value){
                 $this->$key = (isset($data[$key]))?$data[$key]:$this->meta[$key]['default'];
@@ -67,7 +67,7 @@ abstract class RegistroRemAbstract
             $metaData = (isset($this->meta[$prop]))?$this->meta[$prop]:null;
             if(($value === "" || $value === NULL) && $metaData[$prop]['default'] !== "")
             {
-                $this->data[$prop] = $metaData[$prop]['default'];  
+                $this->data[$prop] = $metaData[$prop]['default'];
             }
             else
             {
@@ -112,11 +112,11 @@ abstract class RegistroRemAbstract
             }
             switch ($metaData['tipo']) {
                 case 'decimal':
-                    $retorno = ($this->data[$prop])?number_format($this->data[$prop],$metaData['precision'],'',''):''; 
+                    $retorno = ($this->data[$prop])?number_format($this->data[$prop],$metaData['precision'],'',''):'';
                     return str_pad($retorno,$metaData['tamanho']+$metaData['precision'],'0',STR_PAD_LEFT);
                     break;
                 case 'int':
-                    $retorno = (isset($this->data[$prop]))?abs($this->data[$prop]):''; 
+                    $retorno = (isset($this->data[$prop]))?abs($this->data[$prop]):'';
                     return str_pad($retorno,$metaData['tamanho'],'0',STR_PAD_LEFT);
                     break;
                 case 'alfa':
@@ -215,7 +215,7 @@ abstract class RegistroRemAbstract
     }
     /*
     * m?todo getText()
-    * metodo magico que trabalha recursivamente nos filhos e netos desse objeto 
+    * metodo magico que trabalha recursivamente nos filhos e netos desse objeto
     * prepara as linhas para serem exportadas para txt
     */
     public function getText(){

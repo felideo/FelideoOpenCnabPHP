@@ -4,7 +4,7 @@ namespace CnabPHP;
 abstract class RemessaAbstract
 {
 	public static $banco; // sera atribuido o nome do banco que tambem ? o nome da pasta que contem os layouts
-	public static $layout;// recebera o nome do layout na instacia?ao  
+	public static $layout;// recebera o nome do layout na instacia?ao
 	public static $hearder; // armazena o objeto registro 0 do arquivo
 	public static $entryData; // mantem os dados passados em $data na instanciação
 	public static $loteCounter = 1; // contador de lotes
@@ -18,13 +18,13 @@ abstract class RemessaAbstract
 	* @$layout = nome do layout no momento so Cnab240_SIGCB
 	* @$data = um array contendo os dados nessesarios para o arquvio
 	*/
-	
+
 	public function __construct($banco,$layout,$data){
-		
+
 		self::$banco = $banco;
 		self::$layout = $layout;
 		$class = '\CnabPHP\resources\\B'.self::$banco.'\remessa\\'.self::$layout.'\Registro0';
-		self::$entryData = $data; 
+		self::$entryData = $data;
 		self::$hearder = new $class($data);
 		self::$children[] = self::$hearder;
 	}
@@ -34,8 +34,12 @@ abstract class RemessaAbstract
 	* @$data = um array contendo os dados nessesarios para o arquvio
 	*/
 	public function inserirDetalhe($data){
-		
+
 		$class = '\CnabPHP\resources\\B'.self::$banco.'\remessa\\'.self::$layout.'\Registro1';
+
+		debug2($class);
+		exit;
+
 		self::addChild(new $class($data));
 		//self::$counter++;
 	}
@@ -55,24 +59,24 @@ abstract class RemessaAbstract
 	*/
 
 	static private function addChild(RegistroRemAbstract $child){
-		self::$children[] = $child;   
+		self::$children[] = $child;
 	}
 	/*
 	* método addLote()
 	* Recebe os parametros abaixo e insere num array para uso fururo
-	* @array $data = recebe um array contendo os dados do lote a sera aberto e retorna para qualqer layout 240 o lote criado ou $this se outro 
+	* @array $data = recebe um array contendo os dados do lote a sera aberto e retorna para qualqer layout 240 o lote criado ou $this se outro
 	*/
 	public function addLote(array $data)
 	{
 		if(strpos(self::$layout,'240'))
 		{
 			$class = '\CnabPHP\resources\\B'.self::$banco.'\remessa\\'.self::$layout.'\Registro1';
-			$loteData = $data ? $data:RemessaAbstract::$entryData; 
+			$loteData = $data ? $data:RemessaAbstract::$entryData;
 			$lote = new $class($loteData);
 			self::addChild($lote);
 		}else{
 			$lote = $this;
-		} 
+		}
 		return $lote;
 		self::$loteCounter++;
 	}
