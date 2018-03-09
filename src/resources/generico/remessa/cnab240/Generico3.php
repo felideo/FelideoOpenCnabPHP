@@ -61,6 +61,15 @@ class Generico3 extends RegistroRemAbstract
 	{
 		$this->data['agencia_dv'] = RemessaAbstract::$entryData['agencia_dv'];
 	}
+
+    protected function set_conta($value){
+        $this->data['conta'] = RemessaAbstract::getLote(0)->entryData['conta'];
+    }
+
+    protected function set_conta_dv($value){
+        $this->data['conta_dv'] = RemessaAbstract::getLote(0)->entryData['conta_dv'];
+    }
+
 	protected function set_codigo_convenio($value)
 	{
 		$this->data['codigo_convenio'] = RemessaAbstract::$entryData['codigo_beneficiario'];
@@ -91,14 +100,14 @@ class Generico3 extends RegistroRemAbstract
 		}
 		else
 		{
-			throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados");
+			throw new Exception("<pre>Registros com emissao pelo beneficiario e sem registro nao sao enviados");
 		}
 	}
 	protected function set_seu_numero($value)
 	{
 		if($this->data['nosso_numero']==0 && $value=='')
 		{
-			throw new Exception('O campo "seu_numero" e obrigatorio, na sua falta usareio o nosso numero, porem esse tambem no foi inserido!!!');
+			throw new Exception('<pre>O campo "seu_numero" e obrigatorio, na sua falta usareio o nosso numero, porem esse tambem no foi inserido!!!');
 		}
 		else
 		{
@@ -167,7 +176,7 @@ class Generico3 extends RegistroRemAbstract
 	{
 		if($this->data['protestar']==1 && $value = '')
 		{
-			throw new Exception('O campo "protestar" deve ser 3 para nao protesto e caso querira protetar deve ser informado um prazo maior que 1');
+			throw new Exception('<pre>O campo "protestar" deve ser 3 para nao protesto e caso querira protetar deve ser informado um prazo maior que 1');
 		}
 		else
 		{

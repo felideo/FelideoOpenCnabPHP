@@ -49,28 +49,34 @@ abstract class RegistroRemAbstract
         }
     }
 
-
     /*
     * m?todo __set()
     * executado sempre que uma propriedade for atribu?da.
     */
-    public function __set($prop, $value)
-    {
+    public function __set($prop, $value){
+
         // verifica se existe m?todo set_<propriedade>
-        if (method_exists($this, 'set_'.$prop))
-        {
+        if (method_exists($this, 'set_'.$prop)){
             // executa o m?todo set_<propriedade>
             call_user_func(array($this, 'set_'.$prop), $value);
-        }
-        else
-        {
-            $metaData = (isset($this->meta[$prop]))?$this->meta[$prop]:null;
-            if(($value === "" || $value === NULL) && $metaData[$prop]['default'] !== "")
-            {
+        }else{
+        //     debug2($prop);
+        //     debug2($value);
+            // if(){
+            //     debug2($this->meta);
+            //     debug2($this->data);
+            // }
+
+            $metaData = (isset($this->meta[$prop])) ? $this->meta[$prop] : null;
+
+
+            // debug2($prop);
+            // debug2($value);
+
+
+            if(($value === "" || $value === NULL) && $metaData[$prop]['default'] !== ""){
                 $this->data[$prop] = $metaData[$prop]['default'];
-            }
-            else
-            {
+            }else{
                 // atribui o valor da propriedade
                 $this->data[$prop] = $value;
             }
@@ -104,11 +110,20 @@ abstract class RegistroRemAbstract
         // retorna o valor da propriedade
         if (isset($this->meta[$prop]))
         {
+
+            // debug2($prop);
+            // debug2($this->meta[$prop]);
+            // debug2($this->data[$prop]);
+
             $metaData = (isset($this->meta[$prop]))?$this->meta[$prop]:null;
             $this->data[$prop] = !isset($this->data[$prop]) || $this->data[$prop]==''?$metaData['default']:$this->data[$prop];
             if($metaData['required']==true && (!isset($this->data[$prop]) || $this->data[$prop] === ''))
             {
-                throw new Exception('Campo faltante ou com valor nulo:'.$prop." Boleto Numero:".$this->data['nosso_numero']);
+
+                debug2($this->meta);
+                debug2($this->data);
+
+                throw new Exception('<pre> Campo faltante ou com valor nulo: '.$prop." Boleto Numero: ".$this->data['nosso_numero']);
             }
             switch ($metaData['tipo']) {
                 case 'decimal':
@@ -160,9 +175,16 @@ abstract class RegistroRemAbstract
     */
     private function prepareText($text, $remove=null)
     {
+
+        // debug2($text);
+
         $result = strtoupper($this->removeAccents(trim(html_entity_decode($text))));
+
+        // debug2($result);
+
         if($remove)
             $result = str_replace(str_split($remove), '', $result);
+
         return $result;
     }
 

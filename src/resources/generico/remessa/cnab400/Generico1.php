@@ -20,7 +20,7 @@ class Generico1 extends RegistroRemAbstract
         {
             $this->data['tipo_inscricao_empresa'] = RemessaAbstract::getLote(0)->entryData['tipo_inscricao'];
         }else{
-            throw new Exception("O tipo de incrição deve ser 1  para CPF e 2 para CNPJ, o valor informado foi:".$value);       
+            throw new Exception("<pre>O tipo de incrição deve ser 1  para CPF e 2 para CNPJ, o valor informado foi:".$value);
         }
     }
 
@@ -30,7 +30,7 @@ class Generico1 extends RegistroRemAbstract
         {
             $this->data['tipo_inscricao'] =  $value;
         }else{
-            throw new Exception("O tipo de incrição deve ser 1  para CPF e 2 para CNPJ, o valor informado foi:".$value);       
+            throw new Exception("<pre>O tipo de incrição deve ser 1  para CPF e 2 para CNPJ, o valor informado foi:".$value);
         }
     }
 
@@ -77,7 +77,7 @@ class Generico1 extends RegistroRemAbstract
     {
         if(is_int($value))
         {
-            $this->data['especie_titulo'] = $value; 
+            $this->data['especie_titulo'] = $value;
         }
         else
         {

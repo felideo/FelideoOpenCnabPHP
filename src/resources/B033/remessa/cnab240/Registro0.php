@@ -25,6 +25,7 @@
  */
 namespace CnabPHP\resources\B033\remessa\cnab240;
 use \CnabPHP\resources\generico\remessa\cnab240\Generico0;
+use CnabPHP\RemessaAbstract;
 
 class Registro0 extends Generico0{
     protected $meta = [
@@ -64,7 +65,13 @@ class Registro0 extends Generico0{
             'tipo'     => 'int',
             'required' => true
         ],
-        'uso_caixa1' => [
+        'codigo_transmissao' => [
+            'tamanho'  => 15,
+            'default'  => '',
+            'tipo'     => 'alfa',
+            'required' => true
+        ],
+        'filler2' => [
             'tamanho'  => 25,
             'default'  => ' ',
             'tipo'     => 'alfa',
@@ -125,4 +132,16 @@ class Registro0 extends Generico0{
             'required' => true
         ],
     ];
+
+
+    public function set_codigo_transmissao(){
+        $codigo = RemessaAbstract::$entryData['agencia']
+            . str_pad(RemessaAbstract::$entryData['codigo_beneficiario'], 11, "0", STR_PAD_LEFT);
+
+        $this->data['codigo_transmissao'] = $codigo;
+    }
+
+    public function get_codigo_transmissao(){
+        return $this->data['codigo_transmissao'];
+    }
 }

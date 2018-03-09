@@ -27,8 +27,7 @@ namespace CnabPHP\resources\B033\remessa\cnab240;
 use CnabPHP\resources\generico\remessa\cnab240\Generico3;
 use Exception;
 
-class Registro3R extends Generico3
-{
+class Registro3R extends Generico3{
 	protected $meta = [
 		'codigo_banco' => [          // 1.3R
 			'tamanho'  => 3,
@@ -60,7 +59,7 @@ class Registro3R extends Generico3
 			'tipo'     => 'alfa',
 			'required' => true
 		],
-		'filler1' => [               // 6.3R
+		'filler24' => [               // 6.3R
 			'tamanho'  => 1,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -94,7 +93,7 @@ class Registro3R extends Generico3
 			'precision' => 2,
 			'required'  => true
 		],
-		'filler2' => [               // 6.3R
+		'filler21' => [               // 6.3R
 			'tamanho'  => 24,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -119,7 +118,7 @@ class Registro3R extends Generico3
 			'precision' => 2,
 			'required'  => true
 		],
-		'filler3' => [               // 6.3R
+		'filler22' => [               // 6.3R
 			'tamanho'  => 10,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -137,7 +136,7 @@ class Registro3R extends Generico3
 			'tipo'     => 'alfa',
 			'required' => true
 		],
-		'filler4' => [               // 6.3R
+		'filler23' => [               // 6.3R
 			'tamanho'  => 61,
 			'default'  => ' ',
 			'tipo'     => 'alfa',

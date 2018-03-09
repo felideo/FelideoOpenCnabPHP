@@ -32,7 +32,7 @@ class Generico1 extends RegistroRetAbstract
 {
 	protected $counter = 1;
 	protected function set_codigo_lote($value)
-	{ 
+	{
 		$this->data['codigo_lote'] = RetornoAbstract::$loteCounter;
 	}
 	public function set_tipo_servico($value)
@@ -40,13 +40,13 @@ class Generico1 extends RegistroRetAbstract
 		if($value=='S'){
 			$this->data['tipo_servico'] = 1;
 		}elseif($value=='N'){
-			$this->data['tipo_servico'] = 2; 
+			$this->data['tipo_servico'] = 2;
 		}elseif((int)$value<=2){
-			$this->data['tipo_servico'] = $value; 
+			$this->data['tipo_servico'] = $value;
 		}else{
-			throw new Exception("O tipo de servico deve ser 1 ou S para Registrada ou 2 ou N para Sem Registro, o valor informado foi:".$value);
+			throw new Exception("<pre>O tipo de servico deve ser 1 ou S para Registrada ou 2 ou N para Sem Registro, o valor informado foi:".$value);
 		}
-	}	
+	}
 	protected function set_tipo_inscricao($value)
 	{
 		$this->data['tipo_inscricao'] =  $value ? $value : RetornoAbstract::$entryData['tipo_inscricao'];
@@ -113,7 +113,7 @@ class Generico1 extends RegistroRetAbstract
 			{
 				if($child->codigo_carteira==1)
 				{
-					$dataReg5['qtd_titulos_simples']++;   
+					$dataReg5['qtd_titulos_simples']++;
 					$dataReg5['vrl_titulos_simples'] += $child->getUnformated('valor');
 				}
 				if($child->codigo_carteira==3)
@@ -124,8 +124,8 @@ class Generico1 extends RegistroRetAbstract
 				}
 				if($child->codigo_carteira==4)
 				{
-					$dataReg5['qtd_titulos_descontada'] ++;   
-					$dataReg5['vlr_titulos_descontada'] += $child->getUnformated('valor'); 
+					$dataReg5['qtd_titulos_descontada'] ++;
+					$dataReg5['vlr_titulos_descontada'] += $child->getUnformated('valor');
 				}
 				$child->getText();
 			}

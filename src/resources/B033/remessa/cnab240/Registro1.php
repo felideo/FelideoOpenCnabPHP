@@ -26,6 +26,7 @@
 namespace CnabPHP\resources\B033\remessa\cnab240;
 use CnabPHP\resources\generico\remessa\cnab240\Generico1;
 use Exception;
+use CnabPHP\RemessaAbstract;
 
 class Registro1 extends Generico1{
 	protected $meta = [
@@ -59,7 +60,7 @@ class Registro1 extends Generico1{
 			'tipo'     => 'int',
 			'required' => true
 		],
-		'filler1' => [
+		'filler6' => [
 			'tamanho'  => 2,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -68,6 +69,12 @@ class Registro1 extends Generico1{
 			'tamanho'  => 3,
 			'default'  => '030',
 			'tipo'     => 'int',
+			'required' => true
+		],
+		'filler7' => [
+			'tamanho'  => 1,
+			'default'  => ' ',
+			'tipo'     => 'alfa',
 			'required' => true
 		],
 		'tipo_inscricao' => [
@@ -81,7 +88,7 @@ class Registro1 extends Generico1{
 			'default'  => '',
 			'tipo'     => 'int',
 			'required' => true],
-		'filler2' => [
+		'filler8' => [
 			'tamanho'  => 20,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -90,9 +97,15 @@ class Registro1 extends Generico1{
 		'codigo_transmissao' => [
             'tamanho'  => 15,
             'default'  => '',
-            'tipo'     => 'int',
+            'tipo'     => 'alfa',
             'required' => true
         ],
+        'filler9' => [
+			'tamanho'  => 5,
+			'default'  => ' ',
+			'tipo'     => 'alfa',
+			'required' => true
+		],
 		'nome_empresa' => [
 			'tamanho'  => 30,
 			'default'  => '',
@@ -123,11 +136,20 @@ class Registro1 extends Generico1{
 			'tipo'     => 'date',
 			'required' => true
 		],
-		'filler3' => [
+		'filler10' => [
 			'tamanho'  => 41,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
 			'required' => true
 		],
 	];
+
+	public function getValor(){
+        return $this->data['valor'];
+    }
+
+    public function set_codigo_transmissao(){
+        $this->data['codigo_transmissao'] = RemessaAbstract::$hearder->get_codigo_transmissao();
+    }
+
 }
