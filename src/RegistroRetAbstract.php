@@ -42,7 +42,7 @@ abstract class RegistroRetAbstract
 		$posicao = 0;
 		foreach($this->meta as $key =>$value){
             $valor = (isset($value['precision']))?substr($linhaTxt,$posicao,$value['tamanho']+$value['precision']):substr($linhaTxt,$posicao,$value['tamanho']);
-            
+
 			$this->$key =  $valor;
             $posicao += (isset($value['precision']))?$value['tamanho']+$value['precision']:$value['tamanho'];
 
@@ -67,17 +67,17 @@ abstract class RegistroRetAbstract
 			$metaData = (isset($this->meta[$prop]))?$this->meta[$prop]:null;
 			switch ($metaData['tipo']) {
 				case 'decimal':
-					$inteiro = abs(substr($value, 0, $metaData['tamanho'])); 
+					$inteiro = abs(substr($value, 0, $metaData['tamanho']));
 					$decimal = abs(substr($value, $metaData['tamanho'], $metaData['precision']))/100;
-					$retorno = ($inteiro+$decimal); 
+					$retorno = ($inteiro+$decimal);
 					$this->data[$prop] =  $retorno;
 					break;
 				case 'int':
-					$retorno = abs($value); 
+					$retorno = abs($value);
 					$this->data[$prop] =  $retorno;
 					break;
 				case 'alfa':
-					$retorno = trim($value); 
+					$retorno = trim($value);
 					$this->data[$prop] =  $retorno;
 					break;
 				case 'date':
@@ -86,7 +86,7 @@ abstract class RegistroRetAbstract
 						$data = \DateTime::createFromFormat('dmy',sprintf( '%06d' , $value));
 						$retorno = $data->format('Y-m-d');
 						$this->data[$prop] =  $retorno;
-                        
+
 					}elseif($metaData['tamanho']==8)
 					{
 						$data = \DateTime::createFromFormat('dmY',sprintf( '%08d' , $value));
@@ -132,19 +132,19 @@ abstract class RegistroRetAbstract
 			//$this->data[$prop] = !isset($this->data[$prop]) || $this->data[$prop]==''?$metaData['default']:$this->data[$prop];
 			//if($metaData['required']==true && ($this->data[$prop]=='' || !isset($this->data[$prop])))
 			//{
-			//	throw new Exception('Campo faltante ou com valor nulo:'.$prop);
+			//	throw new Exception('<pre>Campo faltante ou com valor nulo:'.$prop);
 			//}
 			switch ($metaData['tipo']) {
 				case 'decimal':
-					return ($this->data[$prop])?number_format($this->data[$prop],$metaData['precision'],',','.'):''; 
+					return ($this->data[$prop])?number_format($this->data[$prop],$metaData['precision'],',','.'):'';
 					//return str_pad($retorno,$metaData['tamanho'],'0',STR_PAD_LEFT);
 					break;
 				case 'int':
-					return (isset($this->data[$prop]))?abs($this->data[$prop]):''; 
+					return (isset($this->data[$prop]))?abs($this->data[$prop]):'';
 					//return str_pad($retorno,$metaData['tamanho'],'0',STR_PAD_LEFT);
 					break;
 				case 'alfa':
-					return ($this->data[$prop])?$this->prepareText($this->data[$prop]):''; 
+					return ($this->data[$prop])?$this->prepareText($this->data[$prop]):'';
 					//return str_pad(substr($retorno,0,$metaData['tamanho']),$metaData['tamanho'],' ',STR_PAD_RIGHT);
 					break;
 				case $metaData['tipo'] == 'date' && $metaData['tamanho']==6:
@@ -160,7 +160,7 @@ abstract class RegistroRetAbstract
 					break;
 			}
 		}
-	} 
+	}
 	public function get_meta(){
 		return $this->meta;
 	}

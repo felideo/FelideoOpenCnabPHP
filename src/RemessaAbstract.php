@@ -20,26 +20,21 @@ abstract class RemessaAbstract
 	*/
 
 	public function __construct($banco,$layout,$data){
-
-		self::$banco = $banco;
-		self::$layout = $layout;
-		$class = '\CnabPHP\resources\\B'.self::$banco.'\remessa\\'.self::$layout.'\Registro0';
-		self::$entryData = $data;
-		self::$hearder = new $class($data);
+		self::$banco      = $banco;
+		self::$layout     = $layout;
+		$class            = '\CnabPHP\resources\\B'.self::$banco.'\remessa\\'.self::$layout.'\Registro0';
+		self::$entryData  = $data;
+		self::$hearder    = new $class($data);
 		self::$children[] = self::$hearder;
 	}
+
 	/*
 	* método inserirDetalhe()
 	* Recebe os parametros
 	* @$data = um array contendo os dados nessesarios para o arquvio
 	*/
 	public function inserirDetalhe($data){
-
 		$class = '\CnabPHP\resources\\B'.self::$banco.'\remessa\\'.self::$layout.'\Registro1';
-
-		debug2($class);
-		exit;
-
 		self::addChild(new $class($data));
 		//self::$counter++;
 	}

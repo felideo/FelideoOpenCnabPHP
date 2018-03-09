@@ -33,7 +33,7 @@ class Generico3 extends RegistroRemAbstract
 {
 	protected function set_codigo_lote($value)
 	{
-		//ArquivoAbstract::$loteCounter++; 
+		//ArquivoAbstract::$loteCounter++;
 		$this->data['codigo_lote'] = RemessaAbstract::$loteCounter;
 	}
 	protected function set_numero_registro($value)
@@ -75,7 +75,7 @@ class Generico3 extends RegistroRemAbstract
 		$this->data['emissao_boleto'] = $value;
 		if($this->data['nosso_numero']==0)
 		{
-			$this->data['carteira'] = '00'; 
+			$this->data['carteira'] = '00';
 		}
 		elseif($this->data['com_registro']==1 && $value==1)
 		{
@@ -91,29 +91,29 @@ class Generico3 extends RegistroRemAbstract
 		}
 		else
 		{
-			throw new Exception("Registros com emissao pelo beneficiario e sem registro nao sao enviados"); 
-		}   
+			throw new Exception("<pre>Registros com emissao pelo beneficiario e sem registro nao sao enviados");
+		}
 	}
 	protected function set_seu_numero($value)
 	{
 		if($this->data['nosso_numero']==0 && $value==' ')
 		{
-			throw new Exception('O campo "seu_numero" e obrigatorio, na sua falta usareio o nosso numero, porem esse tambem no foi inserido!!!');
+			throw new Exception('<pre>O campo "seu_numero" e obrigatorio, na sua falta usareio o nosso numero, porem esse tambem no foi inserido!!!');
 		}
 		else
 		{
-			$this->data['seu_numero'] = $value != ' ' ? $value : $this->data['nosso_numero'];    
+			$this->data['seu_numero'] = $value != ' ' ? $value : $this->data['nosso_numero'];
 		}
 	}
 	protected function set_seu_numero2($value)
 	{
-		$this->data['seu_numero2'] = $value != ' ' ? $value : $this->data['nosso_numero'];    
+		$this->data['seu_numero2'] = $value != ' ' ? $value : $this->data['nosso_numero'];
 	}
 	protected function set_especie_titulo($value)
 	{
 		if(is_int($value))
 		{
-			$this->data['especie_titulo'] = $value; 
+			$this->data['especie_titulo'] = $value;
 		}
 		else
 		{
@@ -156,6 +156,6 @@ protected function set_mensagem_3($value)
 	{
 		$mensagem = (isset($this->entryData['mensagem']))?explode(PHP_EOL,$this->entryData['mensagem']):array();
 		$this->data['mensagem_8'] = count($mensagem)>=6?$mensagem[5]:' ';
-	}    
+	}
 }
 ?>

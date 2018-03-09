@@ -7,7 +7,7 @@ abstract class RetornoAbstract
 	//public  $hearder; // armazena o objeto registro 0 do arquivo
 	private  $children = array(); // armazena os registros filhos da classe remessa
 	public static $banco; // sera atribuido o nome do banco que tambem é o nome da pasta que contem os layouts
-	public static $layout;// recebera o nome do layout na instacia?ao  
+	public static $layout;// recebera o nome do layout na instacia?ao
 	public static $loteCounter = 1; // contador de lotes
 	public static $lines; // mantem os dados passados em $data na instanciação
 	public static $linesCounter = 0;
@@ -26,7 +26,7 @@ abstract class RetornoAbstract
 		$conteudo = str_replace("\r\n", "\n", $conteudo);
 		$lines = explode("\n", $conteudo);
 		if (count($lines) < 2) {
-			throw new Exception("Arquivo sem Conteudo");
+			throw new Exception("<pre>Arquivo sem Conteudo");
 		}
 		$length = strlen($lines[0]);
 		$layout_versao = null;
@@ -44,15 +44,15 @@ abstract class RetornoAbstract
 		}
 		else
 		{
-			throw new Exception("Não foi possivel detectar o tipo do arquivo, provavelmente esta corrompido");
+			throw new Exception("<pre>Não foi possivel detectar o tipo do arquivo, provavelmente esta corrompido");
 		}
 		if($codigo_tipo == '1'){
-			throw new Exception("Esse é um arqvuio de remessa, nao pode ser processado aqui.");
+			throw new Exception("<pre>Esse é um arqvuio de remessa, nao pode ser processado aqui.");
 		}
 		self::$banco = $codigo_banco;
 		self::$layout = "L".$layout_versao;
 		$class = 'CnabPHP\resources\\B'.self::$banco.'\retorno\\'.self::$layout.'\Registro0';
-		self::$lines = $lines; 
+		self::$lines = $lines;
 		$this->children[] = new $class($lines[0]);
 		$class = 'CnabPHP\resources\\B'.self::$banco.'\retorno\\'.self::$layout.'\Registro9';
 		$this->children[] = new $class($lines[count($lines)-2]);
@@ -75,7 +75,7 @@ abstract class RetornoAbstract
 	{
 		$arquivo = $this->children[0];
 		return $arquivo->getRegistros($lote);
-	}	
+	}
 	/*
 	* método getChilds()
 	* Metodo que retorna todos os filhos
@@ -92,8 +92,8 @@ abstract class RetornoAbstract
 	}
 	public function getLayout()
 	{
-		 $arquivo = $this->children[0];   
+		 $arquivo = $this->children[0];
 		 return (self::$layout!='L400')?$arquivo->versao_layout:'L400';
-         
+
 	}
 }

@@ -61,7 +61,7 @@ class Registro3P extends Generico3{
 			'tipo'     => 'alfa',
 			'required' => true
 		],
-		'filler1' => [ // 6.3P
+		'filler11' => [ // 6.3P
 			'tamanho'  => 1,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -102,13 +102,13 @@ class Registro3P extends Generico3{
 		],
 
 
-   		'conta_dest_fidc' => [               // Conta cobrança Destinatária FIDC ????
+   		'conta_fidc' => [               // Conta cobrança Destinatária FIDC ????
 			'tamanho'  => 9,
 			'default'  => '0',
 			'tipo'     => 'int',
 			'required' => true
 		],
-   		'conta_dest_fidv_digit' => [               // Dígito da conta cobrança Destinatária FIDC ???
+   		'conta_dv_fidc' => [               // Dígito da conta cobrança Destinatária FIDC ???
 			'tamanho'  => 1,
 			'default'  => '0',
 			'tipo'     => 'int',
@@ -116,7 +116,7 @@ class Registro3P extends Generico3{
 		],
 
 
-		'filler2' => [               // 11.3P
+		'filler12' => [               // 11.3P
 			'tamanho'  => 2,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -130,7 +130,7 @@ class Registro3P extends Generico3{
 		],
 
 		// Tipo de cobrança ???
-		'com_registro' => [      //15.3P
+		'tipo_cobranca' => [      //15.3P
 			'tamanho'  => 1,
 			'default'  => '1',  // combrança com registro
 			'tipo'     => 'int',
@@ -150,13 +150,13 @@ class Registro3P extends Generico3{
 			'tipo'     => 'int',
 			'required' => true
 		],
-		'filler3' => [               //12.3P
+		'filler13' => [               //12.3P
 			'tamanho'  => 1,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
 			'required' => true
 		],
-		'filler4' => [               //19.3P
+		'filler14' => [               //19.3P
 			'tamanho'  => 1,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -176,9 +176,8 @@ class Registro3P extends Generico3{
 		],
 		'valor' => [                 //21.3P
 			'tamanho'   => 15,
-			'default'   => '',
-			'tipo'      => 'decimal',
-			'precision' => 2,
+			'default'   => '0',
+			'tipo'      => 'int',
 			'required'  => true
 		],
 		'agencia_cobradora' => [    //22.3P
@@ -193,7 +192,7 @@ class Registro3P extends Generico3{
 			'tipo'     => 'int', // originalmente no manual esta alfa mas foi mudado para int para funcionar
 			'required' => true
 		],
-		'filler5' => [            //41.3P
+		'filler15' => [            //41.3P
 			'tamanho'  => 1,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
@@ -201,7 +200,7 @@ class Registro3P extends Generico3{
 		],
 		'especie_titulo' => [    //24.3P
 			'tamanho'  => 2,
-			'default'  => '2',
+			'default'  => '02',
 			'tipo'     => 'int',
 			'required' => true
 		],
@@ -230,7 +229,7 @@ class Registro3P extends Generico3{
 			'required' => true
 		],
 		'vlr_juros' => [            //29.3P
-			'tamanho'   => 15,
+			'tamanho'   => 13,
 			'default'   => '0',
 			'tipo'      => 'decimal',
 			'precision' => 2,
@@ -249,21 +248,21 @@ class Registro3P extends Generico3{
 			'required' => true
 		],
 		'vlr_desconto' => [            //32.3P
-			'tamanho'   => 15,
+			'tamanho'   => 13,
 			'default'   => '0',
 			'tipo'      => 'decimal',
 			'precision' => 2,
 			'required'  => true
 		],
 		'vlr_IOF' => [            //33.3P
-			'tamanho'   => 15,
+			'tamanho'   => 10,
 			'default'   => '0',
 			'tipo'      => 'decimal',
-			'precision' => 2,
+			'precision' => 5,
 			'required'  => true
 		],
 		'vlr_abatimento' => [            //34.3P
-			'tamanho'   => 15,
+			'tamanho'   => 13,
 			'default'   => '0',
 			'tipo'      => 'decimal',
 			'precision' => 2,
@@ -277,13 +276,13 @@ class Registro3P extends Generico3{
 		],
 		'protestar' => [            //36.3P
 			'tamanho'  => 1,
-			'default'  => '3',
-			'tipo'     => 'alfa',
+			'default'  => '0',
+			'tipo'     => 'int',
 			'required' => true
 		],
 		'prazo_protesto' => [            //37.3P
 			'tamanho'  => 2,
-			'default'  => '0',
+			'default'  => '00',
 			'tipo'     => 'int',
 			'required' => true
 		],
@@ -293,10 +292,10 @@ class Registro3P extends Generico3{
 			'tipo'     => 'int',
 			'required' => true
 		],
-		'filler6' => [            //42.3P
+		'filler16' => [            //42.3P
 			'tamanho'  => 1,
 			'default'  => '0',
-			'tipo'     => 'alfa',
+			'tipo'     => 'int',
 			'required' => true
 		],
 		'prazo_baixar' => [            //39.3P
@@ -307,82 +306,53 @@ class Registro3P extends Generico3{
 		],
 		'codigo_moeda' => [ //40.3P
 			'tamanho'  => 2,
-			'default'  => '9',
+			'default'  => '00',
 			'tipo'     => 'int',
 			'required' => true
 		],
-		'filler7' => [            //42.3P
+		'filler17' => [            //42.3P
 			'tamanho'  => 11,
 			'default'  => ' ',
 			'tipo'     => 'alfa',
 			'required' => true
 		],
-
-
-		// 'carteira'=>[      //13.3P
-		// 	'tamanho'=>2,
-		// 	'default'=>'0',
-		// 	'tipo'=>'int',
-		// 	'required'=>true],
-
-		// 'codigo_carteira'=>[   //14.3P
-		// 	'tamanho'=>1,
-		// 	'default'=>'1',
-		// 	'tipo'=>'int',
-		// 	'required'=>true],
-
-
-		// 'emissao_boleto'=>[          // 17.3
-		// 	'tamanho'=>1,
-		// 	'default'=>'2',
-		// 	'tipo'=>'int',
-		// 	'required'=>true],
-		// 'entrega_boleto'=>[        //18.3P
-		// 	'tamanho'=>1,
-		// 	'default'=>'0',
-		// 	'tipo'=>'int', // originalmente no manual esta alfa mas foi mudado para int para funcionar
-		// 	'required'=>true],
-		// 'codigo_convenio'=>[       //10.3P
-		// 	'tamanho'=>6,
-		// 	'default'=>'0',
-		// 	'tipo'=>'int',
-		// 	'required'=>true],
 	];
 	public function __construct($data = null){
 		if(empty($this->data))parent::__construct($data);
 		$this->inserirDetalhe($data);
 	}
-	public function inserirDetalhe($data)
-	{
+
+	public function inserirDetalhe($data){
 		$class = 'CnabPHP\resources\\B'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3Q';
 		$this->children[] = new $class($data);
-		if( isset($data['codigo_desconto2']) ||
-		isset($data['codigo_desconto3']) ||
-		isset($data['codigo_multa']) ||
-		isset($data['mensagem']) ||
-		isset($data['email_pagador']))
-		{
+
+		if(isset($data['codigo_desconto2'])
+			|| isset($data['codigo_desconto3'])
+			|| isset($data['codigo_multa'])
+			|| isset($data['mensagem'])
+			|| isset($data['email_pagador'])
+		){
 			$class = 'CnabPHP\resources\\B'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3R';
 			$this->children[] = new $class($data);
 		}
-		if($data['emissao_boleto']==1)
-		{
-			if(isset($data['mensagem_frente']))
-			{
+
+		// debug2('ok');
+		// exit;
+
+		if($data['emissao_boleto']==1){
+			if(isset($data['mensagem_frente'])){
 				$data['mensagem_140'] = $data['mensagem_frente'];
 				$data['tipo_impressao'] = 1;
 				$class = 'CnabPHP\resources\\B'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3S1e2';
 				$this->children[] = new $class($data);
 			}
-			if(isset($data['mensagem_verso']))
-			{
+			if(isset($data['mensagem_verso'])){
 				$data['mensagem_140'] = $data['mensagem_verso'];
 				$data['tipo_impressao'] = 2;
 				$class = 'CnabPHP\resources\\B'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3S1e2';
 				$this->children[] = new $class($data);
 			}
-			if(isset($data['mensagem']))
-			{
+			if(isset($data['mensagem'])){
 				if(count(explode(PHP_EOL,$data['mensagem']))>4){
 					$class = 'CnabPHP\resources\\B'.RemessaAbstract::$banco.'\remessa\\'.RemessaAbstract::$layout.'\Registro3S3';
 					$this->children[] = new $class($data);
@@ -391,4 +361,3 @@ class Registro3P extends Generico3{
 		}
 	}
 }
-?>
