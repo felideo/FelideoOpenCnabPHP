@@ -44,4 +44,5 @@ class Banco{
         $banco = self::getBanco($codigo_banco);
         return $banco ? true : false;
     }
+
 }
